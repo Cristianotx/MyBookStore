@@ -43,7 +43,13 @@ namespace Api
         private void Register(IServiceCollection services)
         {
             services.AddScoped<IMongoContext, MongoContext>();
+
+
             services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<IArquivoRepository, ArquivoRepository>();
+
+
+
             services.AddScoped<IValidator<LivroDto>, LivroValidator>();
         }
 
@@ -58,8 +64,8 @@ namespace Api
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseCors("AllowSpecificOrigin");
+            // app.UseHttpsRedirection();
+            app.UseCors(options => options.AllowAnyOrigin());
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseMvc();
             app.UseSwagger();

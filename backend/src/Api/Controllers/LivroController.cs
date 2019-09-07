@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Dtos;
+﻿using Api.Models;
+using Domain.Entities.Dtos;
 using Domain.Mappings;
 using Domain.Repositories;
 using FluentValidation;
@@ -20,10 +21,18 @@ namespace Api.Controllers
             _validator = validator;
         }
 
+
         [HttpGet("")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int page = 1, int itensPerPage = 12)
         {
-            var result = await _livroRepository.GetAll();
+            var result = await _livroRepository.GetPaginated(page, itensPerPage);
+            return Ok(result);
+        }
+
+        [HttpGet("filter", Name = "filter")]
+        public async Task<IActionResult> Get(string texto)
+        {
+            var result = await _livroRepository.GetFiltered(texto);
             return Ok(result);
         }
 

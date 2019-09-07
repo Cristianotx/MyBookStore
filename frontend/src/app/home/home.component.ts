@@ -1,3 +1,4 @@
+import { LivroService } from './../shared/livro.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  litaTopLivros;
 
-  constructor() { }
+  constructor(private livroService: LivroService) {}
 
   ngOnInit() {
+    this.livroService.obterTopLivros().subscribe(result => {
+      this.litaTopLivros = result;
+    });
   }
-
 }

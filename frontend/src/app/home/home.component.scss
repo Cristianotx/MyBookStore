@@ -1,0 +1,32 @@
+::ng-deep {
+  ol.carousel-indicators {
+    top: 30px !important;
+
+    li {
+      width: 40px !important;
+      height: 5px !important;
+      box-shadow: 0px 0px 15px 0px #000;
+      cursor: pointer;
+    }
+  }
+  .carousel-caption {
+    background-color: #0000008f;
+    position: absolute !important;
+    top: calc(60vh) !important;
+    text-shadow: 2px 1px 3px #000000;
+    width: 100%;
+    left: 0;
+    h3 {
+      font-size: 40px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+
+.container-carousel {
+  height: calc(100vh - 75px);
+  position: relative;
+  overflow: hidden;
+}

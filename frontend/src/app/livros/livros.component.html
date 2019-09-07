@@ -1,1 +1,41 @@
-<p>livros works!</p>
+<div class="container-livros">
+  <div class="cards">
+    <div
+      class="card"
+      *ngFor="let livro of listaLivros"
+      (click)="visualizar(livro)"
+    >
+      <picture>
+        <img [src]="livro.urlCapa" width="100%" />
+        <caption>
+          {{
+            livro.titulo
+          }}
+        </caption>
+      </picture>
+      <a class="more-info"> + ver detalhes</a>
+    </div>
+    <div class="card" *ngFor="let livro of listaLivros">
+      <picture>
+        <img [src]="livro.urlCapa" width="100%" />
+        <caption>
+          {{
+            livro.titulo
+          }}
+        </caption>
+      </picture>
+      <a class="more-info"> + Mais informações</a>
+    </div>
+    <div class="card" *ngFor="let livro of listaLivros">
+      <picture>
+        <img [src]="livro.urlCapa" width="100%" />
+        <caption>
+          {{
+            livro.titulo
+          }}
+        </caption>
+      </picture>
+      <a class="more-info"> + Mais informações</a>
+    </div>
+  </div>
+</div>

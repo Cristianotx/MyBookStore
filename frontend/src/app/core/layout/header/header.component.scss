@@ -29,7 +29,8 @@
       .menu {
         padding: 28px 20px;
         color: #fff;
-        &:hover {
+        &:hover,
+        &.active {
           color: rgb(231, 231, 231);
           background-color: #680f0f;
         }
@@ -47,6 +48,9 @@
 
     &:hover {
       background: #6b0c0c;
+    }
+    &:active {
+      transform: scale(0.9);
     }
   }
 }

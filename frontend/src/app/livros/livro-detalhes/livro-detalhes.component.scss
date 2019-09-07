@@ -1,0 +1,30 @@
+section {
+  display: flex;
+  position: relative;
+  width: 1000px;
+  max-width: 100%;
+  margin: 15px auto;
+
+  aside {
+    margin: 0 0 0 15px;
+  }
+  p {
+    position: relative;
+    margin: 35px auto;
+  }
+  .generos {
+    color: #5d5d5d;
+    padding: 4px 5px;
+    background: #d6d6d6;
+    margin: 0 5px;
+    font-size: 10px;
+  }
+  .sinopse {
+    font-weight: 600;
+    font-size: 17px;
+    color: #616161;
+  }
+  li {
+    list-style: none;
+  }
+}

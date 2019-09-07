@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
-    public interface ILivroRepository : IRepository<Livro>
+    public interface IArquivoRepository : IRepository<Arquivo>
     {
-        Task<IEnumerable<Livro>> GetFiltered(string texto);
     }
 }
