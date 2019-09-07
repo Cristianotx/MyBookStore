@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Domain.Entities.Dtos;
+﻿using Domain.Entities.Dtos;
 using Domain.Mappings;
 using Domain.Repositories;
 using FluentValidation;
@@ -74,9 +73,11 @@ namespace Api.Controllers
             return Ok(updated);
         }
 
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
+            await _livroRepository.Remove(id);
+            return Ok();
         }
     }
 }

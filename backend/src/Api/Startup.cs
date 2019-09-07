@@ -34,7 +34,7 @@ namespace Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Api - Livro Store", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "Api - My Book Store", Version = "v1" });
             });
 
             Register(services);
@@ -66,7 +66,7 @@ namespace Api
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api - Livro Store");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api - My Book Store");
                 c.RoutePrefix = string.Empty;
             });
 

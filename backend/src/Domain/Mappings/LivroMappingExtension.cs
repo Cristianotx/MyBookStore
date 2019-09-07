@@ -1,8 +1,5 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Mappings
 {

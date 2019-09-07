@@ -15,7 +15,7 @@ namespace Domain.Validations
             RuleFor(c => c)
                 .Cascade(CascadeMode.StopOnFirstFailure);
 
-            RuleFor(c => c.Titulo).NotNull().NotEmpty().MaximumLength(50);
+            RuleFor(c => c.Titulo).NotEmpty().MaximumLength(50);
             RuleFor(c => c.Generos).NotNull().NotEmpty();
             RuleFor(c => c.DataPublicacao).NotNull();
             RuleFor(c => c.Paginas).Must(c => c > 0).WithMessage("O número de páginas deve ser maior que zero");
