@@ -3,6 +3,7 @@ import { LivroService } from './../../shared/livro.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { GenerosService } from '../shared/generos.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,21 +12,25 @@ import { GenerosService } from '../shared/generos.service';
 })
 export class CadastroComponent implements OnInit {
   form;
+  idLivro;
   listaGeneros;
-  fileToUpload: File;
+  isEdicao = false;
 
   urlUploadArquivo = `${environment.url_api}v1/arquivo/upload`;
 
   constructor(
     private fb: FormBuilder,
     private livroService: LivroService,
-    private generosService: GenerosService
+    private generosService: GenerosService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.construirFormulario();
   }
 
   ngOnInit() {
     this.carregarListaGeneros();
+    this.carregarDadosNoFormulario();
   }
 
   onUpload(event) {
@@ -70,20 +75,42 @@ export class CadastroComponent implements OnInit {
     this.form.get('generos').setValue(generos);
   }
 
+  submit() {
+    if (this.form.valid) {
+      const model = this.form.getRawValue();
+
+      let request;
+
+      if (!this.isEdicao) {
+        request = this.livroService.cadastrar(model);
+      } else {
+        request = this.livroService.editar(this.idLivro, model);
+      }
+
+      request.subscribe(result => {
+        this.form.reset();
+        this.router.navigate(['gerenciar-livros']);
+      });
+    }
+  }
+
+  private carregarDadosNoFormulario() {
+    this.route.params.subscribe(params => {
+      if (params && params.id) {
+        this.livroService.obterLivroPorId(params.id).subscribe(res => {
+          this.idLivro = params.id;
+          this.isEdicao = true;
+          res.dataPublicacao = res.dataPublicacao.substr(0, 10);
+          this.form.patchValue(res);
+        });
+      }
+    });
+  }
+
   private carregarListaGeneros() {
     this.generosService
       .obterListaGeneros()
       .subscribe(listaGeneros => (this.listaGeneros = listaGeneros));
-  }
-
-  submit() {
-    if (this.form.valid) {
-      const model = this.form.getRawValue();
-      this.livroService.cadastrar(model).subscribe(result => {
-        console.log('Cadastrado com sucesso..');
-        this.form.reset();
-      });
-    }
   }
 
   private construirFormulario() {

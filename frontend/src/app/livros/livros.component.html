@@ -1,5 +1,12 @@
 <div class="page">
   <div class="container-livros">
+    <div class="search">
+      <input
+        class="form-control"
+        [formControl]="search"
+        placeholder="Filtrar por Titulo ou Autor"
+      />
+    </div>
     <div class="cards">
       <div
         class="card"
@@ -16,7 +23,12 @@
         </picture>
         <a class="more-info"> + ver detalhes</a>
       </div>
-      <div class="card" *ngFor="let livro of listaLivros">
+
+      <div
+        class="card"
+        *ngFor="let livro of listaLivros"
+        (click)="visualizar(livro)"
+      >
         <picture>
           <img [src]="livro.urlCapa" width="100%" />
           <caption>
@@ -25,9 +37,14 @@
             }}
           </caption>
         </picture>
-        <a class="more-info"> + Mais informações</a>
+        <a class="more-info"> + ver detalhes</a>
       </div>
-      <div class="card" *ngFor="let livro of listaLivros">
+
+      <div
+        class="card"
+        *ngFor="let livro of listaLivros"
+        (click)="visualizar(livro)"
+      >
         <picture>
           <img [src]="livro.urlCapa" width="100%" />
           <caption>
@@ -36,7 +53,7 @@
             }}
           </caption>
         </picture>
-        <a class="more-info"> + Mais informações</a>
+        <a class="more-info"> + ver detalhes</a>
       </div>
     </div>
   </div>

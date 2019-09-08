@@ -12,8 +12,14 @@
     padding: 15px 0;
     background-color: #ebebeb;
 
+    .search {
+      display: flex;
+      width: 400px;
+    }
+
     .paginacao {
       margin: 0 15px;
+      width: 84px;
     }
   }
 }

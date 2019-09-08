@@ -1,6 +1,8 @@
 <div class="page">
   <div class="content-cadastro">
-    <h1 class="titulo">Gerenciamento de Livros - Cadastro</h1>
+    <h1 class="titulo">
+      Gerenciamento de Livros - {{ !isEdicao ? 'Cadastro' : 'Edição' }}
+    </h1>
   </div>
   <div class="container">
     <form style="margin-top:15px" [formGroup]="form" (ngSubmit)="submit()">
@@ -141,7 +143,9 @@
       </div>
 
       <footer>
-        <button type="submit" class="btn btn-success">Cadastrar livro</button>
+        <button type="submit" class="btn btn-success">
+          {{ !isEdicao ? 'Cadastrar' : 'Editar' }} livro
+        </button>
       </footer>
     </form>
   </div>

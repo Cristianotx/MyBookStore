@@ -31,13 +31,6 @@ namespace Infrastructure.MongoDB.Repositories
             return data.SingleOrDefault();
         }
 
-        public async Task<IEnumerable<TEntity>> GetPaginated(int page, int itensPerPage)
-        {
-            var skip = page - 1;
-            var data = DbSet.Find(Builders<TEntity>.Filter.Empty).Skip(skip * itensPerPage).Limit(itensPerPage);
-            return await data.ToListAsync();
-        }
-
         public async Task<TEntity> Add(TEntity obj)
         {
             await DbSet.InsertOneAsync(obj);
@@ -58,7 +51,6 @@ namespace Infrastructure.MongoDB.Repositories
         {
             await DbSet.FindOneAndDeleteAsync(p => p.Id == id);
         }
-
 
         public void Dispose()
         {

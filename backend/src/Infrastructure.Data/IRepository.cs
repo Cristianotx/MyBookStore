@@ -8,7 +8,6 @@ namespace Infrastructure.Data
     {
         Task<TEntity> Add(TEntity obj);
         Task<TEntity> GetById(Guid id);
-        Task<IEnumerable<TEntity>> GetPaginated(int page, int itensPerPage);
         Task<IEnumerable<TEntity>> GetAll();
         Task<TEntity> Update(TEntity obj);
         Task Remove(Guid id);

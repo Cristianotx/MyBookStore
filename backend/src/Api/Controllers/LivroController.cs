@@ -22,16 +22,9 @@ namespace Api.Controllers
 
 
         [HttpGet("")]
-        public async Task<IActionResult> Get(int page = 1, int itensPerPage = 12)
+        public async Task<IActionResult> Get(string texto, int page = 1, int itensPerPage = 12)
         {
-            var result = await _livroRepository.GetPaginated(page, itensPerPage);
-            return Ok(result);
-        }
-
-        [HttpGet("filter", Name = "filter")]
-        public async Task<IActionResult> Get(string texto)
-        {
-            var result = await _livroRepository.GetFiltered(texto);
+            var result = await _livroRepository.GetFiltered(texto, page, itensPerPage);
             return Ok(result);
         }
 

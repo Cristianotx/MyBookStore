@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LivrosComponent } from './livros.component';
@@ -6,6 +7,6 @@ import { LivroDetalhesComponent } from './livro-detalhes/livro-detalhes.componen
 
 @NgModule({
   declarations: [LivrosComponent, LivroDetalhesComponent],
-  imports: [CommonModule, LivrosRoutingModule]
+  imports: [CommonModule, LivrosRoutingModule, ReactiveFormsModule]
 })
 export class LivrosModule {}

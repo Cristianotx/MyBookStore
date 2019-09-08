@@ -13,15 +13,23 @@ export class LivroService {
   }
 
   cadastrar(model) {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json;');
-    return this.http.post(this.URL_BASE, model, { headers });
+    // let headers = new HttpHeaders();
+    // headers = headers.set('Content-Type', 'application/json;');
+    return this.http.post(this.URL_BASE, model);
   }
 
-  obterListaLivros(page = 1, itensPerPage = 12) {
-    return this.http.get<any[]>(
-      `${this.URL_BASE}?page=${page}&itensPerPage=${itensPerPage}`
-    );
+  editar(idLivro, model) {
+    const endpoint = `${this.URL_BASE}/${idLivro}`;
+    return this.http.put(endpoint, model);
+  }
+
+  obterListaLivros(page = 1, itensPerPage = 12, texto = null) {
+    let endpoint = `${this.URL_BASE}?page=${page}&itensPerPage=${itensPerPage}`;
+    if (texto) {
+      endpoint += `&texto=${texto}`;
+    }
+
+    return this.http.get<any[]>(endpoint);
   }
 
   obterLivroPorId(id) {

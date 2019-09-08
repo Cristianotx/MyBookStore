@@ -16,10 +16,21 @@ namespace Infrastructure.MongoDB.Repositories
         {
         }
 
-        public async Task<IEnumerable<Livro>> GetFiltered(string texto)
+        public async Task<IEnumerable<Livro>> GetFiltered(string text, int page, int itensPerPage)
         {
-            var filters = Builders<Livro>.Filter.Where(x => x.Titulo.Contains(texto) || x.Autor.Contains(texto));
-            var data = await DbSet.FindAsync(filters);
+            var skip = (page - 1) * itensPerPage;
+            var filters = Builders<Livro>.Filter.Empty;
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                text = text.ToLower().Trim();
+                filters = Builders<Livro>.Filter
+                    .Where(x => x.Titulo.ToLower().Trim().Contains(text) ||
+                           x.Autor.ToLower().Trim().Contains(text));
+            }
+
+            var data = DbSet.Find(filters).Skip(skip).Limit(itensPerPage);
+
             return await data.ToListAsync();
         }
     }

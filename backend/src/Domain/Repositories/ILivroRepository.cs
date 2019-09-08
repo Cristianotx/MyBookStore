@@ -7,6 +7,6 @@ namespace Domain.Repositories
 {
     public interface ILivroRepository : IRepository<Livro>
     {
-        Task<IEnumerable<Livro>> GetFiltered(string texto);
+        Task<IEnumerable<Livro>> GetFiltered(string text, int page, int itensPerPage);
     }
 }
