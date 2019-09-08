@@ -1,0 +1,9 @@
+<div class="toastr" *ngIf="alerts.length > 0">
+  <alert
+    *ngFor="let alert of alerts"
+    [type]="alert.type"
+    [dismissible]="dismissible"
+    (onClosed)="onClosed(alert)"
+    >{{ alert.msg }}</alert
+  >
+</div>

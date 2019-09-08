@@ -1,5 +1,6 @@
 import { LivroService } from './../shared/livro.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   litaTopLivros;
 
-  constructor(private livroService: LivroService) {}
+  constructor(private livroService: LivroService, private router: Router) {}
 
   ngOnInit() {
     this.livroService.obterTopLivros().subscribe(result => {

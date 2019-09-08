@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { GenerosService } from '../shared/generos.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'src/app/core/toastr/toastr.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -23,7 +24,8 @@ export class CadastroComponent implements OnInit {
     private livroService: LivroService,
     private generosService: GenerosService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.construirFormulario();
   }
@@ -88,9 +90,12 @@ export class CadastroComponent implements OnInit {
       }
 
       request.subscribe(result => {
+        this.toastr.mostrarToaster('success', 'Livro salvo com sucesso');
         this.form.reset();
         this.router.navigate(['gerenciar-livros']);
       });
+    } else {
+      this.setFormDirty();
     }
   }
 
@@ -118,13 +123,19 @@ export class CadastroComponent implements OnInit {
       titulo: ['', Validators.required],
       generos: ['', Validators.required],
       dataPublicacao: [null, Validators.required],
-      paginas: [0, Validators.required],
+      paginas: [null, Validators.required],
       autor: ['', Validators.required],
       editora: ['', Validators.required],
       descricao: ['', Validators.required],
       sinopse: ['', Validators.required],
       links: ['', Validators.required],
       urlCapa: [null, Validators.required]
+    });
+  }
+
+  private setFormDirty() {
+    Object.keys(this.form.controls).forEach(key => {
+      this.form.controls[key].markAsDirty();
     });
   }
 }

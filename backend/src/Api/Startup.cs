@@ -46,6 +46,7 @@ namespace Api
 
 
             services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<IGeneroRepository, GeneroRepository>();
             services.AddScoped<IArquivoRepository, ArquivoRepository>();
 
 

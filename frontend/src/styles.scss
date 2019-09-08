@@ -45,3 +45,9 @@ a:visited {
 .page {
   animation: page 200ms ease-in-out;
 }
+.form-control {
+  &.ng-dirty.ng-invalid {
+    border: 1px solid #da7777;
+    box-shadow: 0 0 20px 0 #f3a0a0fc;
+  }
+}
