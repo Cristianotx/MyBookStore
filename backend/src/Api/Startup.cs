@@ -46,7 +46,6 @@ namespace Api
 
 
             services.AddScoped<ILivroRepository, LivroRepository>();
-            services.AddScoped<IGeneroRepository, GeneroRepository>();
             services.AddScoped<IArquivoRepository, ArquivoRepository>();
 
 
@@ -65,7 +64,6 @@ namespace Api
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseCors(builder =>
             {
                 builder.AllowAnyHeader();
