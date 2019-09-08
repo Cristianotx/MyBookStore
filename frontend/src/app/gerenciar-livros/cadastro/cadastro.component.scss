@@ -1,0 +1,27 @@
+.content-cadastro {
+  margin: 45px;
+  .titulo {
+    color: #a0a0a0;
+  }
+}
+.listas {
+  background: #c3c3c3;
+  margin: 2px;
+  padding: 2px 5px;
+  position: relative;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #424242;
+  box-shadow: 0px 0px 17px 0px #cecece;
+  a.deletar {
+    color: #ab2222;
+    font-weight: 900;
+    font-size: 15px;
+  }
+}
+footer {
+  background: #e0e0e0;
+  text-align: right;
+  padding: 10px 5px;
+  margin: 25px 0px;
+}

@@ -1,17 +1,22 @@
-<div class="container-carousel">
-  <carousel>
-    <slide *ngFor="let livro of litaTopLivros">
-      <img
-        [src]="livro.urlCapa"
-        [alt]="livro.titulo"
-        style="display: block; width: 100%;"
-      />
-      <div class="carousel-caption d-none d-md-block">
-        <h3>{{ livro.titulo }}</h3>
-        <p>
-          {{ livro.sinopse }}
-        </p>
-      </div>
-    </slide>
-  </carousel>
+<div class="page">
+  <div class="container-carousel">
+    <carousel>
+      <slide *ngFor="let livro of litaTopLivros">
+        <img
+          [src]="livro.urlCapa"
+          [alt]="livro.titulo"
+          style="display: block; width: 100%;"
+        />
+        <div class="carousel-caption d-none d-md-block">
+          <h3>{{ livro.titulo }}</h3>
+          <p>
+            {{ livro.sinopse }}
+          </p>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+  <div class="noresults" *ngIf="litaTopLivros?.length === 0">
+    Nenhum livro cadastrado...
+  </div>
 </div>

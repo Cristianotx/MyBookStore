@@ -1,5 +1,4 @@
-﻿using Api.Models;
-using Domain.Entities.Dtos;
+﻿using Domain.Entities.Dtos;
 using Domain.Mappings;
 using Domain.Repositories;
 using FluentValidation;

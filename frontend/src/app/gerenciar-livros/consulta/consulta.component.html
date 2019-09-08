@@ -1,48 +1,66 @@
-<div class="content-gerenciamento">
-  <h1 class="titulo">Gerenciamento de Livros - Consulta</h1>
+<div class="page">
+  <div class="content-consulta">
+    <h1 class="titulo">Gerenciamento de Livros - Consulta</h1>
+    <div class="cabecalho-grid">
+      <button class="btn btn-primary" (click)="cadastrarNovo()">
+        + Cadastrar Novo
+      </button>
 
-  <div class="cabecalho-grid">
-    <button class="btn btn-primary">+ Cadastrar Novo</button>
-
-    <div class="paginacao">
-      <button
-        class="btn btn-default"
-        [disabled]="paginacao.page === 1"
-        (click)="nextPage()"
-      >
-        <</button
-      >&nbsp;
-      <button class="btn btn-default" (click)="previewsPage()">></button>
+      <div class="paginacao">
+        <button
+          class="btn btn-default"
+          [disabled]="paginacao.page === 1"
+          (click)="nextPage()"
+        >
+          <
+        </button>
+        &nbsp;
+        <button
+          class="btn btn-default"
+          [disabled]="(listaLivros?.length || 0) <= paginacao.itensPerPage"
+          (click)="previewsPage()"
+        >
+          >
+        </button>
+      </div>
     </div>
-  </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Capa</th>
-        <th>Titulo</th>
-        <th>Generos</th>
-        <th>Data da publicacao</th>
-        <th>Autor</th>
-        <th>Descricao</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let livro of listaLivros">
-        <td>
-          <img src="{{ livro.urlCapa }}" width="100px" />
-        </td>
-        <td>{{ livro.titulo }}</td>
-        <td>{{ livro.generos }}</td>
-        <td>{{ livro.dataPublicacao | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ livro.autor }}</td>
-        <td>{{ livro.descricao }}</td>
-        <td>
-          <button class="btn  btn-default">Alterar</button> &nbsp;
-          <button class="btn  btn-danger">Excluir</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Capa</th>
+          <th>Titulo</th>
+          <th>Generos</th>
+          <th>Data da publicacao</th>
+          <th>Autor</th>
+          <th>Descricao</th>
+          <th style="width: 197px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let livro of listaLivros">
+          <td>
+            <img src="{{ livro.urlCapa }}" width="100px" />
+          </td>
+          <td>{{ livro.titulo }}</td>
+          <td>{{ livro.generos }}</td>
+          <td>{{ livro.dataPublicacao | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ livro.autor }}</td>
+          <td>{{ livro.descricao }}</td>
+          <td>
+            <button class="btn  btn-default" (click)="editar(livro.id)">
+              Alterar
+            </button>
+            &nbsp;
+            <button class="btn  btn-danger" (click)="excluir(livro.id)">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="noresults" *ngIf="listaLivros?.length === 0">
+    Nenhum livro cadastrado...
+  </div>
 </div>

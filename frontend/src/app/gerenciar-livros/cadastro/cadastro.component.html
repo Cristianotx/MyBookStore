@@ -1,1 +1,148 @@
-<p>cadastro works!</p>
+<div class="page">
+  <div class="content-cadastro">
+    <h1 class="titulo">Gerenciamento de Livros - Cadastro</h1>
+  </div>
+  <div class="container">
+    <form style="margin-top:15px" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group md-12">
+        <label for="titulo">Titulo:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="titulo"
+          formControlName="titulo"
+        />
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="titulo">Selecione os generos:</label>
+          <select class="form-control" id="generos" #generos>
+            <option></option>
+            <option *ngFor="let genero of listaGeneros" [value]="genero">
+              {{ genero }}</option
+            >
+          </select>
+          <button type="button" class="btn" (click)="adicionarGenero(generos)">
+            Adicionar
+          </button>
+        </div>
+
+        <div class="col-md-6">
+          <label for="titulo">Generos selecionados:</label>
+          <div>
+            <span class="listas" *ngFor="let gen of form.get('generos').value">
+              {{ gen }}
+              <a class="deletar" (click)="removeGenero(gen)">x</a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="dataPublicacao">Data da publicacao:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dataPublicacao"
+            formControlName="dataPublicacao"
+          />
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="paginas">Paginas:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="paginas"
+            formControlName="paginas"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="autor">Autor :</label>
+        <input
+          type="text"
+          class="form-control"
+          id="autor"
+          formControlName="autor"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="editora">Editora:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="editora"
+          formControlName="editora"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="descricao"
+          formControlName="descricao"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="sinopse">Sinopse:</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="sinopse"
+          row="12"
+          formControlName="sinopse"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="links">Links de compra:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="links"
+          #links
+          (blur)="adicionarLink(links)"
+        />
+        <button type="button" class="btn" (click)="adicionarLink(links)">
+          Adicionar Link
+        </button>
+      </div>
+
+      <div *ngIf="form.get('links').value">
+        <label>
+          Links adicionados:
+        </label>
+        <div *ngFor="let link of form.get('links').value">
+          <span class="listas">
+            {{ link }}
+            <a class="deletar" (click)="removerLink(link)">x</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="urlUploadArquivo" style="margin-top: 5px">
+        <label>Capa do livro:</label>
+        <div>
+          <picture *ngIf="form.get('urlCapa')?.value">
+            <img [src]="form.get('urlCapa')?.value" width="100px" />
+          </picture>
+          <app-file-upload
+            [urlUploadArquivo]="urlUploadArquivo"
+            (afterFileUploaded)="onUpload($event)"
+          ></app-file-upload>
+        </div>
+      </div>
+
+      <footer>
+        <button type="submit" class="btn btn-success">Cadastrar livro</button>
+      </footer>
+    </form>
+  </div>
+</div>

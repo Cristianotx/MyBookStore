@@ -1,7 +1,7 @@
 import { LivroService } from './../../shared/livro.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta',
@@ -12,23 +12,25 @@ export class ConsultaComponent implements OnInit {
   listaLivros;
   paginacao = {
     page: 1,
-    itensPerPage: 15
+    itensPerPage: 5
   };
   constructor(
     private livroService: LivroService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       if (params && params.page && params.itensPerPage) {
-        this.paginacao.page = params.page;
-        this.paginacao.itensPerPage = params.itensPerPage;
-        this.buscar();
+        this.paginacao.page = +params.page;
+        this.paginacao.itensPerPage = +params.itensPerPage;
       }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.buscar();
+  }
 
   private buscar() {
     this.livroService
@@ -36,16 +38,31 @@ export class ConsultaComponent implements OnInit {
       .subscribe(livros => {
         this.listaLivros = livros;
         this.location.go(
-          `?page=${this.paginacao.page}&itensPerPage=${this.paginacao.itensPerPage}`
+          `gerenciar-livros?page=${this.paginacao.page}&itensPerPage=${this.paginacao.itensPerPage}`
         );
       });
+  }
+  cadastrarNovo() {
+    this.router.navigate(['/gerenciar-livros', 'cadastro']);
+  }
+
+  editar(id) {
+    this.router.navigate(['/gerenciar-livros', id, 'edicao']);
   }
 
   nextPage() {
     this.paginacao.page -= 1;
+    this.buscar();
   }
 
   previewsPage() {
     this.paginacao.page += 1;
+    this.buscar();
+  }
+
+  excluir(id) {
+    this.livroService.excluir(id).subscribe(res => {
+      this.buscar();
+    });
   }
 }

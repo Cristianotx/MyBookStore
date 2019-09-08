@@ -64,8 +64,13 @@ namespace Api
                 app.UseHsts();
             }
 
-            // app.UseHttpsRedirection();
-            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseHttpsRedirection();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+            });
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseMvc();
             app.UseSwagger();

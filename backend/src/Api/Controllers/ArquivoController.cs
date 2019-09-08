@@ -42,7 +42,7 @@ namespace Api.Controllers
 
                 var result = await _arquivoRepository.Add(arquivo);
 
-                return Ok($"v1/arquivo/{result.Id}");
+                return Ok($"v1/arquivo/{arquivo.Id}");
             }
 
         }

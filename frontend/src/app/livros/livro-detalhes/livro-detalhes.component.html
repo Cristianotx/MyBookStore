@@ -1,34 +1,36 @@
-<section *ngIf="livro">
-  <picture>
-    <img [src]="livro.urlCapa" width="350px" />
-  </picture>
-  <aside>
-    <span>{{ livro.autor }}</span>
-    <h1>{{ livro.titulo }}</h1>
-    <span>
-      Data de publicação: {{ livro.dataPublicacao | date: 'dd/MM/yyyy' }}
-    </span>
-    <div>
-      Generos:
-      <span class="generos" *ngFor="let genero of livro.generos">{{
-        genero
-      }}</span>
-    </div>
+<div class="page">
+  <section *ngIf="livro">
+    <picture>
+      <img [src]="livro.urlCapa" width="350px" />
+    </picture>
+    <aside>
+      <span>por: {{ livro.autor }} (Autor) </span>
+      <h1>{{ livro.titulo }}</h1>
+      <span>
+        Data de publicação: {{ livro.dataPublicacao | date: 'dd/MM/yyyy' }}
+      </span>
+      <div>
+        Generos:
+        <span class="generos" *ngFor="let genero of livro.generos">{{
+          genero
+        }}</span>
+      </div>
 
-    <p>{{ livro.descricao }}</p>
+      <p>{{ livro.descricao }}</p>
 
-    <p class="sinopse">{{ livro.sinopse }}</p>
+      <p class="sinopse">{{ livro.sinopse }}</p>
 
-    <footer>
-      <p>Quantidade de paginas: {{ livro.paginas }}</p>
-      <p>Editora: {{ livro.editora }}</p>
+      <footer>
+        <p>Quantidade de paginas: {{ livro.paginas }}</p>
+        <p>Editora: {{ livro.editora }}</p>
 
-      Links:
-      <ul>
-        <li *ngFor="let link of livro.links">
-          <a [href]="link" target="_blank">{{ link }}</a>
-        </li>
-      </ul>
-    </footer>
-  </aside>
-</section>
+        Links:
+        <ul>
+          <li *ngFor="let link of livro.links">
+            <a [href]="link" target="_blank">{{ link }}</a>
+          </li>
+        </ul>
+      </footer>
+    </aside>
+  </section>
+</div>
