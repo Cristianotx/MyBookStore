@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private livroService: LivroService, private router: Router) {}
 
   ngOnInit() {
-    this.livroService.obterTopLivros().subscribe(result => {
+    this.livroService.obterTopLivros().subscribe((result) => {
       this.litaTopLivros = result;
     });
   }

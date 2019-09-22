@@ -1,18 +1,10 @@
 <div class="page">
   <div class="container-livros">
     <div class="search">
-      <input
-        class="form-control"
-        [formControl]="search"
-        placeholder="Filtrar por Titulo ou Autor"
-      />
+      <input class="form-control" [formControl]="search" placeholder="Filtrar por Titulo ou Autor" />
     </div>
     <div class="cards">
-      <div
-        class="card"
-        *ngFor="let livro of listaLivros"
-        (click)="visualizar(livro)"
-      >
+      <div class="card" *ngFor="let livro of listaLivros" (click)="visualizar(livro)">
         <picture>
           <img [src]="livro.urlCapa" width="100%" />
           <caption>

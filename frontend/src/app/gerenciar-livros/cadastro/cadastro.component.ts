@@ -43,7 +43,7 @@ export class CadastroComponent implements OnInit {
   adicionarLink(link) {
     let links = this.form.get('links').value;
 
-    if (link.value && (!links || !links.find(x => x === link.value))) {
+    if (link.value && (!links || !links.find((x) => x === link.value))) {
       links = [...links, link.value];
     }
 
@@ -53,7 +53,7 @@ export class CadastroComponent implements OnInit {
 
   removerLink(link) {
     let links = this.form.get('links').value;
-    links = links.filter(x => x !== link);
+    links = links.filter((x) => x !== link);
     this.form.get('links').setValue(links);
   }
 
@@ -61,8 +61,8 @@ export class CadastroComponent implements OnInit {
     let generos = this.form.get('generos').value || '';
 
     if (
-      this.listaGeneros.find(x => x === genero.value) &&
-      (!generos || !generos.find(x => x === genero.value))
+      this.listaGeneros.find((x) => x === genero.value) &&
+      (!generos || !generos.find((x) => x === genero.value))
     ) {
       generos = [...generos, genero.value];
     }
@@ -73,7 +73,7 @@ export class CadastroComponent implements OnInit {
 
   removeGenero(genero) {
     let generos = this.form.get('generos').value;
-    generos = generos.filter(x => x !== genero);
+    generos = generos.filter((x) => x !== genero);
     this.form.get('generos').setValue(generos);
   }
 
@@ -89,7 +89,7 @@ export class CadastroComponent implements OnInit {
         request = this.livroService.editar(this.idLivro, model);
       }
 
-      request.subscribe(result => {
+      request.subscribe((result) => {
         this.toastr.mostrarToaster('success', 'Livro salvo com sucesso');
         this.form.reset();
         this.router.navigate(['gerenciar-livros']);
@@ -100,9 +100,9 @@ export class CadastroComponent implements OnInit {
   }
 
   private carregarDadosNoFormulario() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       if (params && params.id) {
-        this.livroService.obterLivroPorId(params.id).subscribe(res => {
+        this.livroService.obterLivroPorId(params.id).subscribe((res) => {
           this.idLivro = params.id;
           this.isEdicao = true;
           res.dataPublicacao = res.dataPublicacao.substr(0, 10);
@@ -115,7 +115,7 @@ export class CadastroComponent implements OnInit {
   private carregarListaGeneros() {
     this.generosService
       .obterListaGeneros()
-      .subscribe(listaGeneros => (this.listaGeneros = listaGeneros));
+      .subscribe((listaGeneros) => (this.listaGeneros = listaGeneros));
   }
 
   private construirFormulario() {
@@ -134,7 +134,7 @@ export class CadastroComponent implements OnInit {
   }
 
   private setFormDirty() {
-    Object.keys(this.form.controls).forEach(key => {
+    Object.keys(this.form.controls).forEach((key) => {
       this.form.controls[key].markAsDirty();
     });
   }

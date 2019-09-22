@@ -17,10 +17,10 @@ export class LivrosComponent implements OnInit {
   constructor(private livroService: LivroService, private router: Router) {
     this.search.valueChanges
       .pipe(
-        filter(v => v.length > 1 || v.length === 0),
+        filter((v) => v.length > 1 || v.length === 0),
         debounceTime(300)
       )
-      .subscribe(res => this.consultar(res));
+      .subscribe((res) => this.consultar(res));
   }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class LivrosComponent implements OnInit {
   }
 
   consultar(texto = null) {
-    this.livroService.obterListaLivros(1, 20, texto).subscribe(livros => {
+    this.livroService.obterListaLivros(1, 20, texto).subscribe((livros) => {
       this.listaLivros = livros;
     });
   }

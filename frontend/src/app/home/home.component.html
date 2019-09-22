@@ -2,11 +2,7 @@
   <div class="container-carousel">
     <carousel>
       <slide *ngFor="let livro of litaTopLivros">
-        <img
-          [src]="livro.urlCapa"
-          [alt]="livro.titulo"
-          style="display: block; width: 100%;"
-        />
+        <img [src]="livro.urlCapa" [alt]="livro.titulo" style="display: block; width: 100%;" />
         <div class="carousel-caption ">
           <h3>{{ livro.titulo }}</h3>
           <p>

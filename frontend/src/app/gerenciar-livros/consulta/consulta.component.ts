@@ -2,7 +2,7 @@ import { LivroService } from './../../shared/livro.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-consulta',
@@ -27,7 +27,7 @@ export class ConsultaComponent implements OnInit {
       texto: []
     });
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       if (params && params.page && params.itensPerPage) {
         this.paginacao.page = +params.page;
         this.paginacao.itensPerPage = +params.itensPerPage;
@@ -52,7 +52,7 @@ export class ConsultaComponent implements OnInit {
   private buscar(texto = null) {
     this.livroService
       .obterListaLivros(this.paginacao.page, this.paginacao.itensPerPage, texto)
-      .subscribe(livros => {
+      .subscribe((livros) => {
         this.listaLivros = livros;
         let route = `gerenciar-livros?page=${this.paginacao.page}&itensPerPage=${this.paginacao.itensPerPage}`;
         if (texto) {
@@ -80,7 +80,7 @@ export class ConsultaComponent implements OnInit {
   }
 
   excluir(id) {
-    this.livroService.excluir(id).subscribe(res => {
+    this.livroService.excluir(id).subscribe(() => {
       this.buscar();
     });
   }

@@ -8,32 +8,17 @@
 
       <div style="display:flex">
         <form [formGroup]="formSearch" (ngSubmit)="pesquisar()" class="search">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Filtrar por titulo ou autor"
-            formControlName="texto"
-          />
+          <input type="text" class="form-control" placeholder="Filtrar por titulo ou autor" formControlName="texto" />
           <button type="submit" class="btn btn-primary">
             Pesquisar
           </button>
         </form>
 
         <div class="paginacao">
-          <button
-            class="btn btn-default"
-            [disabled]="paginacao.page === 1"
-            (click)="nextPage()"
-          >
-            <
-          </button>
-          &nbsp;
-          <button
-            class="btn btn-default"
-            [disabled]="(listaLivros?.length || 0) <= paginacao.itensPerPage"
-            (click)="previewsPage()"
-          >
-            >
+          <button class="btn btn-default" [disabled]="paginacao.page === 1" (click)="nextPage()">
+            < </button> &nbsp; <button class="btn btn-default"
+              [disabled]="(listaLivros?.length || 0) <= paginacao.itensPerPage" (click)="previewsPage()">
+              >
           </button>
         </div>
       </div>
